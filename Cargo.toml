@@ -1,0 +1,46 @@
+[package]
+name = "wgpu_tutorial"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "wgpu_tutorial_lib"
+crate-type = ["cdylib", "rlib"]
+
+[build-dependencies]
+anyhow = "1.0.81"
+fs_extra = "1.3.0"
+glob = "0.3.1"
+
+[dependencies]
+cfg-if = "1"
+winit = "0.29.15"
+env_logger = "0.11.3"
+log = "0.4.21"
+wgpu = "0.19.3"
+pollster = "0.3.0"
+bytemuck = { version = "1.15.0", features = ["derive"] }
+anyhow = "1.0.81"
+glam = { version = "0.27.0", features = ["bytemuck"] }
+tobj = { version = "4.0.2", features = ["async"] }
+
+[dependencies.image]
+version = "0.25.0"
+default-features = false
+features = ["png", "jpeg"]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = "0.1.7"
+console_log = "1.0.0"
+wgpu = { version = "0.19.3", features = ["webgl"] }
+wasm-bindgen = "0.2.92"
+wasm-bindgen-futures = "0.4.42"
+web-sys = { version = "0.3.69", features = [
+    "Document",
+    "Window",
+    "Element",
+    "Location",
+] }
+reqwest = "0.12.2"
